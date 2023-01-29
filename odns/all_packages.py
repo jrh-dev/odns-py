@@ -1,7 +1,7 @@
 import requests
 from odns.models.odns_models import AllPackages
 
-def all_packages(contains: str = None, limit: int = 1000) -> list[tuple]:
+def all_packages(contains: str = None, limit: int = 1000) -> dict:
     """
     Returns names and id's of all packages available from <opendata.nhs.scot> 
     in a list as tuples along with the package id, with the option to limit 
@@ -28,7 +28,10 @@ def all_packages(contains: str = None, limit: int = 1000) -> list[tuple]:
 
     for result in res['result']['results']:
         pac_det = AllPackages.parse_obj(result)
-        packages.append((pac_det.id, pac_det.name))
+        packages.append({
+            "package_id":pac_det.id,
+            "package_name":pac_det.name
+            })
 
     return packages
 
