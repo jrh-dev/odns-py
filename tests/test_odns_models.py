@@ -2,7 +2,7 @@ from odns.all_packages import all_packages
 import pytest
 
 @pytest.mark.vcr()
-def test_return():
+def test_all_packages_success():
     """ Tests all_packages returns expected result """
     res = all_packages(limit=2)
     assert len(res) == 2
@@ -12,7 +12,7 @@ def test_return():
     assert res[1][1] == 'child-and-adolescent-mental-health-waiting-times'
 
 @pytest.mark.vcr()
-def test_fail():
+def test_all_packages_fail():
     """ Tests all_packages fails when passed bad """
     with pytest.raises(Exception):
         res = all_packages(limit="a")
