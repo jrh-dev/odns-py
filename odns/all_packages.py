@@ -16,9 +16,11 @@ def all_packages(contains: str = None, limit: int = 1000) -> list[tuple]:
     
     req = f"{url}package_search?{contains}rows={limit}"
 
-    res = requests.get(req)
+    res = requests.get(req, timeout = 3)
 
-    assert res.status_code == 200
+    if res.status_code != 200:
+        print(res.raise_for_status())
+        return None
 
     res = res.json()
     
