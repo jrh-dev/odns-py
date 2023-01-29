@@ -2,7 +2,7 @@ import requests
 from odns.models.odns_models import AllResources
 from odns.models.odns_models import AllPackages
 
-def all_resources(package_contains: str = None, resource_contains: str = None) -> dict:
+def all_resources(package_contains: str = None, resource_contains: str = None) -> list[dict]:
     """
     Returns an overview of all resources available from <opendata.nhs.scot>, 
     with the option to limit results based on both package and resource names.
